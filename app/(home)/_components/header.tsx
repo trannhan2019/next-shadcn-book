@@ -1,6 +1,7 @@
 "use client";
 
 import LogoImage from "@/assets/img/logo.png";
+import { motion } from "motion/react";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { useWindowScroll } from "@uidotdev/usehooks";
 import {
@@ -19,15 +20,15 @@ import Link from "next/link";
 const dataMenu = [
   {
     title: "HOME",
-    url: "#",
+    url: "/",
   },
   {
     title: "BOOKS",
-    url: "#",
+    url: "/book",
   },
   {
     title: "E-BOOKS",
-    url: "#",
+    url: "/e-book",
   },
 ];
 

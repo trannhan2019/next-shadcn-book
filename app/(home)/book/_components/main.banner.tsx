@@ -9,19 +9,11 @@ import Image from "next/image";
 
 export default function MainBanner() {
   return (
-    <div className={cn("flex min-h-screen items-center ")}>
-      <Image
-        src={BgSlide}
-        alt="img"
-        placeholder="blur"
-        quality={100}
-        fill
-        sizes="100vw"
-        style={{
-          objectFit: "cover",
-        }}
-        className="-z-100"
-      />
+    <div
+      className={cn(
+        "flex min-h-screen items-center bg-[url('/img/slider-bg-2.jpg')] bg-cover bg-center bg-no-repeat "
+      )}
+    >
       <div className="container mx-auto px-5">
         <div className="flex w-full items-center justify-center lg:w-6/12 lg:justify-start">
           <div className="flex flex-col items-center lg:items-start">

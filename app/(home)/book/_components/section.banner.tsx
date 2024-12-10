@@ -1,19 +1,8 @@
-import BannerImg from "@/assets/img/banner.jpg";
-import BgSlide from "@/assets/img/slider-bg-2.jpg";
 import { Button } from "@/components/ui/button";
 
 export default function SectionBanner() {
   return (
-    <div
-      className="h-[500px]"
-      style={{
-        backgroundImage: `url(${BgSlide})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-        backgroundPosition: "center",
-      }}
-    >
+    <div className="h-[500px] bg-[url('/img/banner.jpg')] bg-fixed bg-cover bg-center bg-no-repeat ">
       <div className="container mx-auto px-5">
         <div className="w-full py-36 text-center lg:w-6/12 lg:text-left">
           <span className="font-semibold">TRENDING PRODUCT OF THE WEEK</span>

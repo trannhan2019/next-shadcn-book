@@ -1,15 +1,14 @@
 "use client";
 
+import { Card, CardContent } from "@/components/ui/card";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardTitle,
-} from "@/components/ui/card";
-import Link from "next/link";
-import { motion } from "motion/react";
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import Image from "next/image";
+import Link from "next/link";
+import Autoplay from "embla-carousel-autoplay";
 
 const data = [
   {
@@ -92,57 +91,44 @@ const data = [
   },
 ];
 
-export default function Popular() {
+export default function SameList() {
   return (
-    <div className="py-20">
-      <div className="container mx-auto p-5">
-        <div className="flex flex-col">
-          {/* START PORTFOLIO HEADING */}
-          <div className="w-full">
-            <div className="text-center">
-              <h1 className="text-4xl font-semibold">Our Popular Product</h1>
-              <p className="mt-7">
-                Aenean imperdiet. Etiam ultricies nisi vel augue men tuhi
-                spectrum alle me.
-              </p>
-            </div>
-          </div>
-          {/* END PORTFOLIO HEADING */}
-
-          {/* START PORTFOLIO IMAGES */}
-          <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {data.map((item) => (
+    <div className="container mx-auto px-5">
+      <h4 className="mb-5 mt-10 text-center text-3xl font-semibold md:text-left">
+        Sách cùng thể loại
+      </h4>
+      <Carousel
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        plugins={[Autoplay({ delay: 2000 })]}
+        className="w-full"
+      >
+        <CarouselContent>
+          {data.map((item) => (
+            <CarouselItem
+              key={item.id}
+              className="group md:basis-1/4 lg:basis-1/5"
+            >
               <Link href={`/book/${item.id}`} key={item.id}>
-                <motion.div
-                  initial={{ opacity: 0.2, y: 100 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.5 }}
-                >
-                  <Card className="w-full overflow-hidden transition duration-500 hover:-translate-y-2 hover:shadow-2xl">
-                    <CardContent className="h-[300px] relative">
+                <div className="p-1">
+                  <Card>
+                    <CardContent className="relative h-[250px] w-full">
                       <Image
                         src={item.image}
-                        alt={item.title}
+                        alt="book"
                         fill
-                        className="object-cover"
+                        className="object-cover transition-all duration-300 group-hover:scale-105"
                       />
                     </CardContent>
-                    <CardFooter className="mt-5 h-[80px] flex-col items-start gap-y-1">
-                      <CardTitle className="text-black/80">
-                        {item.title}
-                      </CardTitle>
-                      <CardDescription className="text-left">
-                        {item.author}
-                      </CardDescription>
-                    </CardFooter>
                   </Card>
-                </motion.div>
+                </div>
               </Link>
-            ))}
-          </div>
-          {/* END PORTFOLIO IMAGES */}
-        </div>
-      </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
     </div>
   );
 }
