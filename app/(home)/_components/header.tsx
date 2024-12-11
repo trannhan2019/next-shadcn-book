@@ -24,6 +24,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useState } from "react";
 
 const dataMenu = [
   {
@@ -41,6 +42,7 @@ const dataMenu = [
 ];
 
 export default function Header() {
+  const [sheetOpen, setSheetOpen] = useState(false);
   const [{ y }] = useWindowScroll();
 
   return (
@@ -75,8 +77,11 @@ export default function Header() {
           </ul>
           {/* auth*/}
           <div className="hidden items-center md:flex">
-            {false ? (
-              <NavUser user={{ email: "test@gmail.com" }} />
+            {true ? (
+              <NavUser
+                setSheetOpen={setSheetOpen}
+                user={{ email: "test@gmail.com" }}
+              />
             ) : (
               <Button asChild size="lg">
                 <Link href="/login">
@@ -88,7 +93,7 @@ export default function Header() {
           </div>
 
           {/* Mobile menu ------------------------*/}
-          <Sheet>
+          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger className="md:hidden">
               <Menu />
             </SheetTrigger>
@@ -99,22 +104,26 @@ export default function Header() {
               </VisuallyHidden.Root>
               <ul className="mb-3 flex flex-col p-4">
                 {dataMenu.map((item) => (
-                  <li className="group p-2" key={item.title}>
+                  <li key={item.title} className="group p-2">
                     <Link
                       className="p-4 text-sm font-semibold group-hover:text-orange-500"
                       href={item.url}
+                      onClick={() => setSheetOpen(false)}
                     >
                       {item.title}
                     </Link>
                   </li>
                 ))}
               </ul>
-              {false ? (
+              {true ? (
                 <div className="flex justify-end pr-3">
-                  <NavUser user={{ email: "test@gmail.com" }} />
+                  <NavUser
+                    setSheetOpen={setSheetOpen}
+                    user={{ email: "test@gmail.com" }}
+                  />
                 </div>
               ) : (
-                <Button asChild size="lg">
+                <Button asChild size="lg" className="w-full">
                   <Link href="/login">
                     <Lock className="mr-2 size-4" />
                     Login
@@ -130,7 +139,13 @@ export default function Header() {
   );
 }
 
-function NavUser({ user }: { user: { email: String } }) {
+function NavUser({
+  user,
+  setSheetOpen,
+}: {
+  user: { email: string };
+  setSheetOpen: (open: boolean) => void;
+}) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex items-center gap-2 focus-visible:outline-none">
@@ -143,19 +158,19 @@ function NavUser({ user }: { user: { email: String } }) {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="w-[200px]">
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setSheetOpen(false)}>
           <User className="mr-2 size-4" />
           <Link href="/profile">Profile</Link>
         </DropdownMenuItem>
 
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setSheetOpen(false)}>
           <Settings className="mr-2 size-4" />
-          <Link href="/profile">Settings</Link>
+          <Link href="/settings">Settings</Link>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setSheetOpen(false)}>
           <Power className="mr-2 size-4" color="red" />
           <Link href="/">Logout</Link>
         </DropdownMenuItem>
