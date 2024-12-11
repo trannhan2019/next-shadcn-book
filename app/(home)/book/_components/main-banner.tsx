@@ -1,17 +1,15 @@
 "use client";
 
-import BgSlide from "@/assets/img/slider-bg-2.jpg";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Image from "next/image";
 
 export default function MainBanner() {
   return (
     <div
       className={cn(
-        "flex min-h-screen items-center bg-[url('/img/slider-bg-2.jpg')] bg-cover bg-center bg-no-repeat "
+        "flex min-h-screen items-center bg-[url('/img/slider-bg-2.jpg')] bg-cover bg-center bg-no-repeat",
       )}
     >
       <div className="container mx-auto px-5">

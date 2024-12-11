@@ -67,6 +67,7 @@ export default function Detail() {
                 alt="book"
                 fill
                 className="object-cover"
+                sizes="100vw 50vw"
               />
             </div>
           </div>

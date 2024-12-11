@@ -142,8 +142,8 @@ export default function BookList() {
         </div>
         <div className="flex flex-col md:flex-row">
           {/* START STICKY NAV */}
-          <div className="flex w-full md:w-[300px] flex-col ">
-            <div className="p-3 ">
+          <div className="flex w-full flex-col md:w-[300px]">
+            <div className="p-3">
               <h5 className="mb-2 text-2xl font-medium">Search</h5>
               <div className="flex gap-1">
                 <Input type="text" placeholder="Search name or author ..." />
@@ -173,10 +173,10 @@ export default function BookList() {
           {/* END STICKY NAV */}
 
           {/* START PRODUCT COL 8 */}
-          <div className="w-full p-4 ">
+          <div className="w-full p-4">
             {/* START LISTING HEADING */}
 
-            <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 bg-gray-100 rounded-lg p-4">
+            <div className="mt-5 grid grid-cols-1 gap-5 rounded-lg bg-gray-100 p-4 md:grid-cols-2 lg:grid-cols-3">
               {data.map((item) => (
                 <Link href={`/book/${item.id}`} key={item.id}>
                   <motion.div
@@ -185,11 +185,12 @@ export default function BookList() {
                     transition={{ duration: 1.5 }}
                   >
                     <Card className="w-full overflow-hidden transition duration-500 hover:-translate-y-2 hover:shadow-2xl">
-                      <CardContent className="h-[250px] w-full relative">
+                      <CardContent className="relative h-[250px] w-full">
                         <Image
                           src={item.image}
                           alt={item.title}
                           fill
+                          sizes="100vw 50vw"
                           className="object-cover"
                         />
                       </CardContent>

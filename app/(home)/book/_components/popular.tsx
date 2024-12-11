@@ -119,11 +119,12 @@ export default function Popular() {
                   transition={{ duration: 1.5 }}
                 >
                   <Card className="w-full overflow-hidden transition duration-500 hover:-translate-y-2 hover:shadow-2xl">
-                    <CardContent className="h-[300px] relative">
+                    <CardContent className="relative h-[300px]">
                       <Image
                         src={item.image}
                         alt={item.title}
                         fill
+                        sizes="100vw 50vw"
                         className="object-cover"
                       />
                     </CardContent>

@@ -119,6 +119,7 @@ export default function SameList() {
                         src={item.image}
                         alt="book"
                         fill
+                        sizes="100vw 50vw"
                         className="object-cover transition-all duration-300 group-hover:scale-105"
                       />
                     </CardContent>
