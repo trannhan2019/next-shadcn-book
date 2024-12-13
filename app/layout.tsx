@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} scroll-smooth antialiased`}>
         <ProgressBarProvider>{children}</ProgressBarProvider>
       </body>
     </html>

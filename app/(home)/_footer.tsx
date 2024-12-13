@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="mt-10 flex items-center justify-between bg-secondary-foreground p-4">
+    <footer className="mt-3 flex items-center justify-between bg-secondary-foreground p-4">
       <aside className="flex grid-flow-col text-gray-200">
         <svg
           width={36}

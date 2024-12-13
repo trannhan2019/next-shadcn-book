@@ -1,8 +1,8 @@
 "use client";
 
-import LogoImage from "@/assets/img/logo.png";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { useWindowScroll } from "@uidotdev/usehooks";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import {
   Sheet,
   SheetContent,
@@ -48,17 +48,33 @@ export default function Header() {
   return (
     <div
       className={cn(
-        "absolute left-0 right-0 top-0 z-10 h-[85px]",
-        y !== null && y > 90 && "sticky animate-scroll-show bg-white",
+        "absolute left-0 right-0 top-0 z-10 h-[65px] md:h-[85px]",
+        y !== null && y > 90 && "sticky animate-scroll-show bg-white shadow-md",
       )}
     >
       <div className="container mx-auto h-full px-5">
         <div className="flex h-full w-full justify-between">
           {/* logo-------------------- */}
-          <div className="my-4 max-w-[85px]">
-            <a href="index-book-shop.html">
-              <Image src={LogoImage} alt="img" />
-            </a>
+          {/* <div className="relative my-2 h-auto w-[150px] md:w-[200px]">
+            <Link href="/">
+              <Image
+                src="/img/A3.png"
+                alt="img"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            </Link>
+          </div> */}
+          <div className="my-2 w-[150px] md:w-[200px]">
+            <AspectRatio ratio={17 / 5}>
+              <Image
+                src="/img/A3.png"
+                alt="logo"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-contain"
+              />
+            </AspectRatio>
           </div>
           {/* logo---------------------- */}
 
@@ -80,7 +96,7 @@ export default function Header() {
             {true ? (
               <NavUser
                 setSheetOpen={setSheetOpen}
-                user={{ email: "test@gmail.com" }}
+                user={{ email: "test@gmail.com", name: "test" }}
               />
             ) : (
               <Button asChild size="lg">
@@ -119,7 +135,7 @@ export default function Header() {
                 <div className="flex justify-end pr-3">
                   <NavUser
                     setSheetOpen={setSheetOpen}
-                    user={{ email: "test@gmail.com" }}
+                    user={{ email: "test@gmail.com", name: "test" }}
                   />
                 </div>
               ) : (
@@ -143,27 +159,42 @@ function NavUser({
   user,
   setSheetOpen,
 }: {
-  user: { email: string };
+  user: { email: string; name: string };
   setSheetOpen: (open: boolean) => void;
 }) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger className="flex items-center gap-2 focus-visible:outline-none">
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <p className="text-md font-normal">{user.email}</p>
+        <div className="text-left">
+          <p className="text-sm font-normal">{user.name}</p>
+          <p className="text-sm font-normal text-gray-500">{user.email}</p>
+        </div>
         <ChevronDown className="ml-auto size-4" />
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="w-[200px]">
-        <DropdownMenuItem onClick={() => setSheetOpen(false)}>
+        <DropdownMenuItem
+          onClick={() => {
+            setSheetOpen(false);
+            setOpen(false);
+          }}
+        >
           <User className="mr-2 size-4" />
           <Link href="/profile">Profile</Link>
         </DropdownMenuItem>
 
-        <DropdownMenuItem onClick={() => setSheetOpen(false)}>
+        <DropdownMenuItem
+          onClick={() => {
+            setSheetOpen(false);
+            setOpen(false);
+          }}
+        >
           <Settings className="mr-2 size-4" />
           <Link href="/settings">Settings</Link>
         </DropdownMenuItem>

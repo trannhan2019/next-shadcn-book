@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "./_components/sidebar";
+import Sidebar from "./_sidebar";
 
 export default function PersonalLayout({
   children,
@@ -8,9 +8,9 @@ export default function PersonalLayout({
 }) {
   return (
     <div className="h-screen bg-gray-100 pt-[85px]">
-      <div className="container mx-auto flex h-full px-5">
+      <div className="container mx-auto flex flex-col md:flex-row">
         <Sidebar />
-        <section className="flex-1 p-5">{children}</section>
+        <section className="p-5">{children}</section>
       </div>
     </div>
   );

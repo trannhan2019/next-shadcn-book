@@ -1,4 +1,4 @@
-import Banner from "./_components/banner";
+import Banner from "./_banner";
 
 export default function Ebook() {
   return (
