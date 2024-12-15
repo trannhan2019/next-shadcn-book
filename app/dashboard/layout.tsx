@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       <DashboardSidebar />
       <SidebarInset>
         <Header />
-        <main className="flex-1 p-4">{children}</main>
+        <main className="flex-1 bg-gray-100 p-4">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );

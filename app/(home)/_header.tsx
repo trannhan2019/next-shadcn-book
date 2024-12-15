@@ -55,22 +55,13 @@ export default function Header() {
       <div className="container mx-auto h-full px-5">
         <div className="flex h-full w-full justify-between">
           {/* logo-------------------- */}
-          {/* <div className="relative my-2 h-auto w-[150px] md:w-[200px]">
-            <Link href="/">
-              <Image
-                src="/img/A3.png"
-                alt="img"
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-            </Link>
-          </div> */}
           <div className="my-2 w-[150px] md:w-[200px]">
             <AspectRatio ratio={17 / 5}>
               <Image
                 src="/img/A3.png"
                 alt="logo"
                 fill
+                priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-contain"
               />
@@ -179,6 +170,16 @@ function NavUser({
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="w-[200px]">
+        <DropdownMenuItem
+          onClick={() => {
+            setSheetOpen(false);
+            setOpen(false);
+          }}
+        >
+          <User className="mr-2 size-4" />
+          <Link href="/dashboard">Dashboard</Link>
+        </DropdownMenuItem>
+
         <DropdownMenuItem
           onClick={() => {
             setSheetOpen(false);

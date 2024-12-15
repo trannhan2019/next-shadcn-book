@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Congty {
+  id         Int        @id @default(autoincrement())
+  ten        String
+  tenVietTat String?
+  diachi     String?
+  sdt        String?
+  trangThai  Boolean    @default(true)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  phongBans  PhongBan[]
+}
+
+model PhongBan {
+  id         Int      @id @default(autoincrement())
+  ten        String
+  tenVietTat String?
+  congtyId   Int
+  congTy     Congty   @relation(fields: [congtyId], references: [id])
+  trangThai  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  users      User[]
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  USER
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  name       String
+  password   String
+  role       Role     @default(USER)
+  trangThai  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  avatar     String?
+  phongBanId Int
+  phongBan   PhongBan @relation(fields: [phongBanId], references: [id])
+}
