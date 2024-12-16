@@ -1,5 +1,4 @@
 import { layDanhSachCongTy } from "@/actions/congty";
-import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -9,6 +8,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import ListSearch from "./_list-search";
+import { XIcon, CheckIcon, EllipsisVertical, Pencil } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const List = async () => {
   const congTys = await layDanhSachCongTy();
@@ -20,28 +27,49 @@ const List = async () => {
         <TableHeader>
           <TableRow>
             <TableHead>Tên công ty</TableHead>
+            <TableHead>Tên viết tắt</TableHead>
             <TableHead>Địa chỉ</TableHead>
+            <TableHead>Số điện thoại</TableHead>
             <TableHead>Trạng thái</TableHead>
+            <TableHead>Hành động</TableHead>
           </TableRow>
         </TableHeader>
 
         <TableBody>
           {congTys.map((congTy) => (
             <TableRow key={congTy.id}>
-              <TableCell className="text-md font-medium">
+              <TableCell className="text-sm text-gray-800">
                 {congTy.ten}
               </TableCell>
-              <TableCell className="text-sm text-gray-700">
+              <TableCell className="text-sm text-gray-800">
+                {congTy.tenVietTat}
+              </TableCell>
+              <TableCell className="text-sm text-gray-800">
                 {congTy.diachi}
+              </TableCell>
+              <TableCell className="text-sm text-gray-800">
+                {congTy.sdt}
               </TableCell>
               <TableCell>
                 {congTy.trangThai ? (
-                  <Badge className="bg-sky-500 text-white hover:bg-sky-600">
-                    Hoạt động
-                  </Badge>
+                  <CheckIcon color="green" className="h-4 w-4" />
                 ) : (
-                  <Badge variant="destructive">Không hoạt động</Badge>
+                  <XIcon color="red" className="h-4 w-4" />
                 )}
+              </TableCell>
+              <TableCell>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="h-8 w-8 p-0">
+                      <EllipsisVertical />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem>
+                      <Pencil />
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </TableCell>
             </TableRow>
           ))}
