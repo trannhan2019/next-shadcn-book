@@ -21,13 +21,13 @@ const items = [
     icon: Home,
   },
   {
-    title: "Đơn vị",
-    url: "/dashboard/don-vi",
+    title: "Công ty",
+    url: "/dashboard/cong-ty",
     icon: Inbox,
   },
   {
-    title: "Calendar",
-    url: "#",
+    title: "Phòng ban",
+    url: "/dashboard/phong-ban",
     icon: Calendar,
   },
   {

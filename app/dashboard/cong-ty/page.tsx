@@ -1,8 +1,9 @@
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { PlusIcon } from "lucide-react";
-import AddForm from "./_add-form";
+// import AddForm from "./_add-form";
 import List from "./_list";
+import AddFormAction from "./_add-form-action";
 
 export default function CongTy() {
   return (
@@ -16,7 +17,7 @@ export default function CongTy() {
               <span>Thêm</span>
             </Button>
           </DialogTrigger>
-          <AddForm />
+          <AddFormAction />
         </Dialog>
       </div>
 
